@@ -18,11 +18,15 @@ Everything the game needs (Phaser, all art) is bundled locally, so it also works
 
 ## How to play
 
-Click a counter lane — or press `1` / `2` / `3` — to send the baker there. If a customer is waiting, he serves them; if a plate is coming back, he catches it before it crashes. He can only be at one counter at a time, so timing matters.
+Tap (or click) a counter lane — or press `1`-`5` — to send the baker there. If a customer is waiting, he serves them; if a plate is coming back, he catches it before it crashes. He can only be at one counter at a time, so timing matters. Works with mouse, touch, or keyboard, and the page resizes to fit desktop or mobile screens (with a nudge to rotate to landscape on narrow phones).
 
 - **Cupcake Counter** — fast, straightforward orders.
 - **Donut Counter** — orders come two at a time.
 - **Pie Counter** — needs a moment to bake before it can go out.
+- **Cookie Counter** (unlocks Day 2) — a full batch, two to serve.
+- **Muffin Counter** (unlocks Day 3) — needs a moment to warm through, pays the most.
+
+Survive a full day and the bakery opens again "tomorrow" with one more counter added — score and difficulty carry forward as an ongoing career, up to all five counters running at once.
 
 The day runs in three phases — 🌅 Morning Prep, 🔥 Lunch Rush, 🌙 Closing Time — with special customers showing up as things heat up:
 
@@ -30,7 +34,7 @@ The day runs in three phases — 🌅 Morning Prep, 🔥 Lunch Rush, 🌙 Closin
 - 🔍 **Critic** — a miss costs double, a success pays double.
 - 👥 **Rowdy Group** — another one arrives the instant this one leaves.
 
-Customers get less patient the longer the day goes on — forgiving early, tighter by closing time.
+Customers get less patient the longer the day goes on — forgiving early, tighter by closing time — and each new day tightens the pace a little further.
 
 ## Tech
 
