@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <title>Bakery Rush</title>
 <style>
   html, body {
@@ -32,7 +35,12 @@
     padding: 0 8px;
   }
   #game-container {
-    width: min(100%, 800px, calc((100vh - 170px) * 4 / 3));
+    /* Phaser's Scale Manager (mode: FIT) sets an inline width/height:100%
+       on this element itself, not just the canvas - !important is required
+       here so our responsive sizing formula actually wins over that. */
+    width: min(100%, 800px, calc((100vh - 170px) * 4 / 3)) !important;
+    width: min(100%, 800px, calc((100dvh - 170px) * 4 / 3)) !important;
+    height: auto !important;
     aspect-ratio: 4 / 3;
     margin: 0 auto;
     line-height: 0;
@@ -116,6 +124,14 @@
   }
   @media (max-width: 700px) and (orientation: portrait) {
     #orientationHint { display: block; }
+  }
+  @media (orientation: landscape) and (max-height: 500px) {
+    h1, #hint, #legend { display: none; }
+    #game-wrap { padding: 0; }
+    #game-container {
+      width: min(100%, 800px, calc((100vh - 12px) * 4 / 3)) !important;
+      width: min(100%, 800px, calc((100dvh - 12px) * 4 / 3)) !important;
+    }
   }
   @media (max-width: 480px) {
     h1 { font-size: 22px; padding: 6px 16px 10px; gap: 6px; }
