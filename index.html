@@ -269,21 +269,22 @@
   // at phase boundaries, so customers start out forgiving and get progressively
   // less patient the longer you play.
   const PHASES = [
-    { key: "prep",    label: "🌅 Morning Prep",  duration: 16000, spawnMult: 1.6,  speedMult: 0.8,  allowSpecial: false, allowNewCustomers: true },
-    { key: "lunch",   label: "🔥 Lunch Rush",    duration: 34000, spawnMult: 0.55, speedMult: 1.25, allowSpecial: true,  allowNewCustomers: true },
-    { key: "closing", label: "🌙 Closing Time",  duration: 18000, spawnMult: 0.9,  speedMult: 1.0,  allowSpecial: true,  allowNewCustomers: false }
+    { key: "prep",    label: "🌅 Morning Prep",  duration: 18000, spawnMult: 2.0,  speedMult: 0.65, allowSpecial: false, allowNewCustomers: true },
+    { key: "lunch",   label: "🔥 Lunch Rush",    duration: 34000, spawnMult: 0.85, speedMult: 0.95, allowSpecial: true,  allowNewCustomers: true },
+    { key: "closing", label: "🌙 Closing Time",  duration: 18000, spawnMult: 1.15, speedMult: 0.8,  allowSpecial: true,  allowNewCustomers: false }
   ];
   const DAY_DURATION_MS = PHASES.reduce((sum, p) => sum + p.duration, 0);
 
   // Continuous patience difficulty ramp across the whole day: customers are
   // noticeably forgiving right at the start, and progressively less patient
   // the longer the day runs, bottoming out by the end of Closing Time.
-  const PATIENCE_RAMP_START = 1.7;
-  const PATIENCE_RAMP_END = 0.6;
+  // (Eased further after playtest feedback that the game felt too fast-paced.)
+  const PATIENCE_RAMP_START = 2.2;
+  const PATIENCE_RAMP_END = 0.85;
 
   const SPECIAL_TYPES = ["vip", "critic", "rowdy"];
-  const SPECIAL_CHANCE = 0.28;
-  const BAKER_MS_PER_PX = 2.1; // travel speed between counters
+  const SPECIAL_CHANCE = 0.2;
+  const BAKER_MS_PER_PX = 1.85; // travel speed between counters (a bit snappier so catches feel fair)
   const SPECIAL_SHADOW_COLOR = { vip: 0xf5c518, critic: 0x999999, rowdy: 0xff7a45 };
 
   // ---------------------------------------------------------------------
@@ -989,7 +990,7 @@
       const elapsed = this.time.now - this.dayStartTime;
       const t = Phaser.Math.Clamp(elapsed / DAY_DURATION_MS, 0, 1);
       const base = Phaser.Math.Linear(PATIENCE_RAMP_START, PATIENCE_RAMP_END, t);
-      const dayMult = Math.max(0.55, 1 - (this.dayNumber - 1) * 0.06); // extra bite on later days
+      const dayMult = Math.max(0.7, 1 - (this.dayNumber - 1) * 0.04); // extra bite on later days (eased alongside the base ramp)
       return base * dayMult;
     }
 
